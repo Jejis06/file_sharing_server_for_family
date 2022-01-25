@@ -1,0 +1,50 @@
+<!doctype html>
+  <title>Files/{{name}}</title>
+
+    <head>
+        <h1>Current folder --> {{name}}</h1>
+
+        <form method="post">
+            <p>Search by extantion</p>
+                <input type="inputSearch" name="szykanie"><input type="submit"  name="Refresh" value="Refresh" placeholder="search by extantion">
+        </form>
+    </head>
+  <body class="body">
+            <form method="post">
+                <br>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msgs in messages %}
+                    <div class="alert alert-info" role="alert">
+                        {{msgs}}
+                        <input type="submit"  name="Yes" value="Yes">
+                        <input type="submit"  name="Yes" value="No">
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <br>
+
+
+        {% for element in value %}
+            <li> <a href="/df/{{element}}" target="blank">{{element}}</a><input type="checkbox"  name="pliki_zazanaczone" value="{{element}}"></li>
+        {% endfor %}
+
+        <p>{{alert}}</p>
+
+        <br>
+
+        <input type="submit" value="Delete_selected" name="dels">
+            <input type="submit" value="Download_selected" name="ds">
+        <input type="submit" value="Delete_all" name="delall">
+            <input type="submit" value="Download_all" name="dall">
+
+        </form>
+
+
+    <a href="/up/{{name}}" target="blank"><button style="width:213.5px">Upload files</button></a>
+    <a href="/files" target="blank"><button style="width:213.5px">Menu</button></a>
+
+
+  </body>

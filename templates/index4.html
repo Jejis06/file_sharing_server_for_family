@@ -1,0 +1,24 @@
+<!doctype html>
+  <title>Lookup</title>
+  <h1>Showing --> {{name}}</h1>
+
+
+
+<img src="{{ url_for('static', filename=name) }}">
+
+  <body class="body">
+
+    {% for element in array %}
+            <p>{{element}}</a>
+        {% endfor %}
+        <p>{{alarm}}</p>
+
+
+
+
+    <br>
+
+    <a href="/df/{{name}}" target="blank"><button>Back</button></a>
+    <a href="/files" target="blank"><button>Menu</button></a>
+
+  </body>
