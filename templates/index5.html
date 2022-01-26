@@ -28,7 +28,7 @@
 
 
         {% for element in value %}
-            <li> <a href="/df/{{element}}" target="blank">{{element}}</a><input type="checkbox"  name="pliki_zazanaczone" value="{{element}}"></li>
+            <li> <a href="/df2/{{name}}/{{element}}" target="blank">{{element}}</a><input type="checkbox"  name="pliki_zazanaczone" value="{{element}}"></li>
         {% endfor %}
 
         <p>{{alert}}</p>
@@ -44,7 +44,7 @@
 
 
     <a href="/up/{{name}}" target="blank"><button style="width:213.5px">Upload files</button></a>
-    <a href="/files" target="blank"><button style="width:213.5px">Menu</button></a>
+    <a href="/files" target="blank"><button style="width:213.5px">back</button></a>
 
 
   </body>

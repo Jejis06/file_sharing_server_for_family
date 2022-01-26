@@ -57,7 +57,7 @@ def download_file(filename):
             wartosc = ""
             if request.method == 'POST':
 
-
+                # ref = request.form.get("Refresh")
                 zgoda = request.form.get("Yes")
                 serch = request.form.get("szykanie")
 
@@ -66,7 +66,8 @@ def download_file(filename):
                     hh = serch
                 else:
                     hh = None
-                
+                # if ref != None:
+                # hh = ""
                 if request.form.get('ds') != None:
                     wartosc = request.form.get('ds')
 
@@ -147,7 +148,10 @@ def download_file(filename):
             except:
                 serch = ""
 
-           
+            # try:
+            # gg = bb
+            # except :
+            # gg = False
 
             arr = []
             arr2 = os.listdir(os.path.join(pliki,filename))
@@ -167,6 +171,11 @@ def download_file(filename):
     else:
         return render_template('index2.html',value=filename)
 
+
+@app.route("/df2/<fds>/<filename>", methods = ['GET','POST'])
+def doe(fds,filename):
+    return render_template('index6.html',value=filename,value2=fds)
+
 @app.route("/")
 def main_menu():
     return redirect("/files")
@@ -178,7 +187,7 @@ def files():
     wartosc = ""
     if request.method == 'POST':
 
-        
+        #ref = request.form.get("Refresh")
         zgoda = request.form.get("Yes")
         serch = request.form.get("szykanie")
 
@@ -189,7 +198,8 @@ def files():
             hh = serch
         else:
             hh = None
-        
+        #if ref != None:
+          #hh = ""
         if request.form.get('ds') != None :
             wartosc = request.form.get('ds')
             
@@ -281,7 +291,10 @@ def files():
     except:
         serch = ""
 
-   
+    #try:
+        #gg = bb
+    #except :
+        #gg = False
 
 
     arr = []
@@ -314,7 +327,7 @@ def folder_look():
 
 
 
-    
+# main
 
 @app.route('/look/<filename>')
 def lookup_files(filename):
@@ -342,7 +355,7 @@ def lookup_files(filename):
 
 
     
-    return render_template('index4.html',array = arr, alarm=str,name=filename,im=image)
+    return render_template('index4.html',array = arr, alarm=str,name=filename,im=image,pliks=filename)
 
 
 
@@ -359,6 +372,46 @@ def return_files_tut(filename):
     file_path = pliki + filename
     return send_file(file_path, as_attachment=True, attachment_filename='')
 
+#sub - main
+
+@app.route('/look-sub/<folder>/<filename>')
+def lookup_files_sub(folder,filename):
+    arr = []
+    image = ""
+    file_path = pliki + folder + "/" +filename
+    if filename.endswith(".docx") or filename.endswith(".DOCX"):
+        doc = Document(file_path)
+        for para in doc.paragraphs:
+            arr.append(para.text)
+        str = ""
+
+    elif filename.endswith(".txt") or filename.endswith(".TXT"):
+        with open(file_path, 'r', encoding='utf-8') as r:
+            arr.append(r.read())
+            r.close()
+        str = ""
+    elif filename.endswith(".jpg") or filename.endswith(".JPG") or filename.endswith(".PNG") or filename.endswith(
+            ".png") or filename.endswith(".GIF") or filename.endswith(".gif"):
+        image = file_path
+        str = ""
+    else:
+        str = "For now I can only read .txt and .docx files :("
+        arr = []
+
+    return render_template('index7.html', upfolder = folder,array=arr, alarm=str, name=filename, im=image,pliks=folder + "/" +filename)
+
+
+@app.route('/delete-files-sub/<folder>/<filename>')
+def delete_files_tut_sub(folder,filename):
+    file_path = pliki + os.path.join(folder,filename)
+    os.remove(file_path)
+    return redirect("/df/"+folder)
+
+
+@app.route('/return-files-sub/<folder>/<filename>')
+def return_files_tut_sub(folder,filename):
+    file_path = pliki + os.path.join(folder,filename)
+    return send_file(file_path, as_attachment=True, attachment_filename='')
 
 if __name__ == '__main__':
     app.secret_key = 'tajne'
