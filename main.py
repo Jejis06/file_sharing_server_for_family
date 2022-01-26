@@ -57,7 +57,7 @@ def download_file(filename):
             wartosc = ""
             if request.method == 'POST':
 
-                # ref = request.form.get("Refresh")
+
                 zgoda = request.form.get("Yes")
                 serch = request.form.get("szykanie")
 
@@ -66,8 +66,7 @@ def download_file(filename):
                     hh = serch
                 else:
                     hh = None
-                # if ref != None:
-                # hh = ""
+                
                 if request.form.get('ds') != None:
                     wartosc = request.form.get('ds')
 
@@ -148,10 +147,7 @@ def download_file(filename):
             except:
                 serch = ""
 
-            # try:
-            # gg = bb
-            # except :
-            # gg = False
+           
 
             arr = []
             arr2 = os.listdir(os.path.join(pliki,filename))
@@ -182,7 +178,7 @@ def files():
     wartosc = ""
     if request.method == 'POST':
 
-        #ref = request.form.get("Refresh")
+        
         zgoda = request.form.get("Yes")
         serch = request.form.get("szykanie")
 
@@ -193,8 +189,7 @@ def files():
             hh = serch
         else:
             hh = None
-        #if ref != None:
-          #hh = ""
+        
         if request.form.get('ds') != None :
             wartosc = request.form.get('ds')
             
@@ -286,10 +281,7 @@ def files():
     except:
         serch = ""
 
-    #try:
-        #gg = bb
-    #except :
-        #gg = False
+   
 
 
     arr = []
