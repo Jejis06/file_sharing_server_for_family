@@ -1,1 +1,4 @@
+pip install Werkzeug
+pip install flask
+pip install python-docx
 mkdir uploads
