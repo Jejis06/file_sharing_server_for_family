@@ -8,7 +8,9 @@ u share files  on your local network
 
 @ cd file_sharing_server_for_family
 
-@ bash commands
+@ chmod +x commands
+
+@ ./commands
 
 <---------------------------------✨Running✨--------------------------------->
 
